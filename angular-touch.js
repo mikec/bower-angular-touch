@@ -335,7 +335,8 @@ ngTouch.directive('ngClick', ['$parse', '$timeout', '$rootElement',
       lastLabelClickCoordinates = null;
     }
     // remember label click coordinates to prevent click busting of trigger click event on input
-    if (event.target.tagName.toLowerCase() === 'label') {
+    if (event.target && event.target.tagName &&
+        event.target.tagName.toLowerCase() === 'label') {
       lastLabelClickCoordinates = [x, y];
     }
 
@@ -351,7 +352,7 @@ ngTouch.directive('ngClick', ['$parse', '$timeout', '$rootElement',
     event.preventDefault();
 
     // Blur focused form elements
-    event.target && event.target.blur();
+    event.target && event.target.blur && event.target.blur();
   }
 
 
@@ -418,10 +419,6 @@ ngTouch.directive('ngClick', ['$parse', '$timeout', '$rootElement',
       var e = touches[0].originalEvent || touches[0];
       touchStartX = e.clientX;
       touchStartY = e.clientY;
-    });
-
-    element.on('touchmove', function(event) {
-      resetState();
     });
 
     element.on('touchcancel', function(event) {
