@@ -352,7 +352,7 @@ ngTouch.directive('ngClick', ['$parse', '$timeout', '$rootElement',
     event.preventDefault();
 
     // Blur focused form elements
-    event.target && event.target.blur && event.target.blur();
+    // event.target && event.target.blur && event.target.blur();
   }
 
 
